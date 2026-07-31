@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishpreet Singh - Professional Presentation | IITM Janakpuri</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#111827',
+                        accentCyan: '#06b6d4',
+                        accentIndigo: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        /* Presentation Deck Container */
+        .deck-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            position: relative;
+        }
+        /* 16:9 Aspect Ratio Slide Viewport */
+        .slide-viewport {
+            width: 90vw;
+            max-width: 1280px;
+            height: 50.625vw;
+            max-height: 720px;
+            background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .slide-viewport.active {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        /* Shimmer Loader */
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        /* Navigation Controls */
+        .nav-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            background: #06b6d4;
+            border-color: #06b6d4;
+            transform: scale(1.05);
+        }
+        /* Progress Bar */
+        .progress-bar-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 60;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #06b6d4);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        /* Slide Counter Indicator */
+        .slide-counter {
+            position: absolute;
+            bottom: 24px;
+            left: 30px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            z-index: 50;
+        }
+        /* Custom scrollbar for slide content if needed */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Main Deck Wrapper -->
+    <div class="deck-container">
+
+        <!-- ==================== SLIDE 1: Title Slide ==================== -->
+        <div class="slide-viewport active" data-slide="1">
+            <div class="absolute inset-0 bg-gradient-to-tr from-accentIndigo/20 via-transparent to-accentCyan/20 pointer-events-none"></div>
+            <div class="flex flex-col justify-center items-center h-full px-12 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-accentCyan text-xs font-semibold mb-6 uppercase tracking-widest border border-accentCyan/30">
+                    <i class="fa-solid fa-graduation-cap"></i> Academic Portfolio & Presentation
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 text-white">
+                    Ishpreet <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentCyan to-accentIndigo">Singh</span>
+                </h1>
+                <p class="text-lg lg:text-xl text-gray-300 max-h-24 max-w-2xl font-light mb-8">
+                    Full-Stack Developer, UI/UX Architect, and Tech Enthusiast engineering immersive digital experiences.
+                </p>
+                <div class="glass-card px-6 py-3 rounded-xl flex items-center gap-6 text-sm text-gray-400">
+                    <div><span class="text-gray-500 block text-xs">Institution</span> <strong class="text-white font-medium">IITM Janakpuri</strong></div>
+                    <div class="h-8 w-px bg-gray-700"></div>
+                    <div><span class="text-gray-500 block text-xs">Enrollment ID</span> <strong class="text-accentCyan font-mono">11190302025</strong></div>
+                </div>
+            </div>
+            <div class="slide-counter">01 / 15</div>
+        </div>
+
+        <!-- ==================== SLIDE 2: Executive Summary ==================== -->
+        <div class="slide-viewport" data-slide="2">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Overview</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Executive Summary</h2>
+                    <p class="text-gray-400 text-sm">A high-level overview of professional trajectory, core competencies, and academic foundation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-accentCyan">
+                        <div class="text-accentCyan text-2xl mb-3"><i class="fa-solid fa-code"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Technical Rigor</h3>
+                        <p class="text-gray-400 text-sm">Strong command over modern programming paradigms, frontend architectures, and backend integration.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-accentIndigo">
+                        <div class="text-accentIndigo text-2xl mb-3"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">UI/UX Excellence</h3>
+                        <p class="text-gray-400 text-sm">Passionate about clean layouts, accessibility standards, and fluid responsive animations.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-emerald-400">
+                        <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Goal-Oriented</h3>
+                        <p class="text-gray-400 text-sm">Focused on building scalable applications that solve real-world problems efficiently.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">02 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 3: Academic Background ==================== -->
+        <div class="slide-viewport" data-slide="3">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Education</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Academic Background</h2>
+                    <p class="text-gray-400 text-sm">Foundation built at one of the premier institutions for professional studies.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto items-center">
+                    <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-6 text-accentCyan/20 text-6xl"><i class="fa-solid fa-university"></i></div>
+                        <span class="text-xs text-accentCyan font-mono">CURRENT INSTITUTION</span>
+                        <h3 class="text-2xl font-bold text-white mt-1 mb-2">IITM Janakpuri</h3>
+                        <p class="text-gray-300 text-sm mb-4">Pursuing advanced professional curriculum with emphasis on computer applications and modern software engineering.</p>
+                        <div class="flex items-center gap-4 text-xs font-mono text-gray-400">
+                            <div><i class="fa-solid fa-id-card text-accentCyan mr-1"></i> ID: 11190302025</div>
+                            <div><i class="fa-solid fa-calendar text-accentIndigo mr-1"></i> Active Scholar</div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="glass-card p-5 rounded-xl flex items-start gap-4">
+                            <div class="p-3 bg-accentCyan/10 text-accentCyan rounded-lg"><i class="fa-solid fa-book-open"></i></div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Core Curriculum Focus</h4>
+                                <p class="text-gray-400 text-xs mt-1">Data Structures, Algorithms, Database Management Systems, and Web Engineering.</p>
+                            </div>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl flex items-start gap-4">
+                            <div class="p-3 bg-accentIndigo/10 text-accentIndigo rounded-lg"><i class="fa-solid fa-users-rectangle"></i></div>
+                            <div>
+                                <h4 class="text-white font-semibold text-sm">Collaborative Environment</h4>
+                                <p class="text-gray-400 text-xs mt-1">Active participation in technical fests, coding clubs, and peer hackathons.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-counter">03 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 4: Core Technical Skills ==================== -->
+        <div class="slide-viewport" data-slide="4">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Expertise</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Core Technical Skills</h2>
+                    <p class="text-gray-400 text-sm">Languages, frameworks, and tools leveraged for daily development workflows.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+                    <div class="glass-card p-5 rounded-xl text-center hover:border-accentCyan transition-colors">
+                        <i class="fa-brands fa-js text-yellow-400 text-3xl mb-3"></i>
+                        <h4 class="text-white font-semibold text-sm">JavaScript / ES6+</h4>
+                        <p class="text-gray-400 text-xs mt-1">Asynchronous programming, DOM, APIs</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl text-center hover:border-accentCyan transition-colors">
+                        <i class="fa-brands fa-html5 text-orange-500 text-3xl mb-3"></i>
+                        <h4 class="text-white font-semibold text-sm">HTML5 & CSS3</h4>
+                        <p class="text-gray-400 text-xs mt-1">Semantic markup, Flexbox, Grid</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl text-center hover:border-accentCyan transition-colors">
+                        <i class="fa-brands fa-react text-cyan-400 text-3xl mb-3"></i>
+                        <h4 class="text-white font-semibold text-sm">React & Tailwind</h4>
+                        <p class="text-gray-400 text-xs mt-1">Component architecture, Utility CSS</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl text-center hover:border-accentCyan transition-colors">
+                        <i class="fa-brands fa-node text-green-500 text-3xl mb-3"></i>
+                        <h4 class="text-white font-semibold text-sm">Node.js & Databases</h4>
+                        <p class="text-gray-400 text-xs mt-1">Backend services, SQL/NoSQL</p>
+                    </div>
+                </div>
+                <div class="slide-counter">04 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 5: Frontend Architecture & UI/UX ==================== -->
+        <div class="slide-viewport" data-slide="5">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Design Philosophy</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Frontend Architecture & UI/UX</h2>
+                    <p class="text-gray-400 text-sm">Creating intuitive, accessible, and high-performing user interfaces.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-accentCyan text-xl font-bold mb-2">01. Responsive First</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Ensuring seamless layout adaptation across mobile viewports, tablets, and widescreen desktop displays.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-accentIndigo text-xl font-bold mb-2">02. Glassmorphism & Depth</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Leveraging backdrop filters, subtle gradients, and high contrast typography for a modern aesthetic.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-emerald-400 text-xl font-bold mb-2">03. Performance Tuning</div>
+                        <p class="text-gray-400 text-xs leading-relaxed">Minimizing asset footprint, optimizing DOM re-flows, and implementing asynchronous image loading.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">05 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 6: Project Showcase - Part 1 ==================== -->
+        <div class="slide-viewport" data-slide="6">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Portfolio</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Featured Project: Interactive Web Dashboard</h2>
+                    <p class="text-gray-400 text-sm">A fully responsive analytical control center built with modern web standards.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto items-center">
+                    <div class="glass-card rounded-2xl overflow-hidden border border-gray-700 h-56 relative flex items-center justify-center bg-gray-900">
+                        <!-- Dynamic Image Placeholder Container -->
+                        <div class="absolute inset-0 shimmer" id="imgLoader1"></div>
+                        <img src="" alt="Dashboard Preview" id="projectImg1" class="w-full h-full object-cover opacity-90 transition-opacity duration-500" onload="document.getElementById('imgLoader1').style.display='none';">
+                        <div class="absolute bottom-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-xs font-mono text-cyan-300">Analytics UI</div>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-white">Real-Time Data Visualization Suite</h3>
+                        <p class="text-gray-300 text-sm">Designed and developed a robust analytical dashboard featuring live charts, customizable widgets, and sleek state management.</p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-accentCyan/10 text-accentCyan text-xs rounded-full font-mono">JavaScript</span>
+                            <span class="px-3 py-1 bg-accentIndigo/10 text-accentIndigo text-xs rounded-full font-mono">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded-full font-mono">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-counter">06 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 7: Project Showcase - Part 2 ==================== -->
+        <div class="slide-viewport" data-slide="7">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Portfolio</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Featured Project: E-Commerce Web Application</h2>
+                    <p class="text-gray-400 text-sm">An optimized shopping platform with seamless checkout and inventory tracking.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto items-center">
+                    <div class="space-y-4 order-2 md:order-1">
+                        <h3 class="text-xl font-bold text-white">Next-Gen Digital Marketplace</h3>
+                        <p class="text-gray-300 text-sm">Engineered an intuitive storefront featuring product filtering, secure shopping cart state, and asynchronous data fetching for catalog items.</p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-accentCyan/10 text-accentCyan text-xs rounded-full font-mono">React</span>
+                            <span class="px-3 py-1 bg-accentIndigo/10 text-accentIndigo text-xs rounded-full font-mono">Node.js</span>
+                            <span class="px-3 py-1 bg-purple-500/10 text-purple-400 text-xs rounded-full font-mono">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl overflow-hidden border border-gray-700 h-56 relative flex items-center justify-center bg-gray-900 order-1 md:order-2">
+                        <div class="absolute inset-0 shimmer" id="imgLoader2"></div>
+                        <img src="" alt="E-commerce Preview" id="projectImg2" class="w-full h-full object-cover opacity-90 transition-opacity duration-500" onload="document.getElementById('imgLoader2').style.display='none';">
+                        <div class="absolute bottom-3 left-3 px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-xs font-mono text-purple-300">E-Commerce UI</div>
+                    </div>
+                </div>
+                <div class="slide-counter">07 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 8: Problem Solving & Algorithms ==================== -->
+        <div class="slide-viewport" data-slide="8">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Engineering</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Problem Solving & Algorithms</h2>
+                    <p class="text-gray-400 text-sm">Applying computational thinking to write clean, optimized, and scalable code.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-accentCyan text-2xl mb-3"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Data Structures</h3>
+                        <p class="text-gray-400 text-xs">Proficient in utilizing trees, graphs, hash maps, and linked lists for efficient memory and time complexity.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-accentIndigo text-2xl mb-3"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Time Complexity</h3>
+                        <p class="text-gray-400 text-xs">Focused on O(N) and O(log N) optimizations to ensure seamless performance under heavy loads.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <div class="text-emerald-400 text-2xl mb-3"><i class="fa-solid fa-code-compare"></i></div>
+                        <h3 class="text-lg font-semibold text-white mb-2">Clean Code Practices</h3>
+                        <p class="text-gray-400 text-xs">Adhering to DRY, SOLID principles, and comprehensive documentation for maintainability.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">08 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 9: Software Development Lifecycle (SDLC) ==================== -->
+        <div class="slide-viewport" data-slide="9">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Methodology</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Software Development Lifecycle</h2>
+                    <p class="text-gray-400 text-sm">Structured approach from conceptualization to deployment.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-auto">
+                    <div class="glass-card p-5 rounded-xl border-t-2 border-accentCyan">
+                        <span class="text-accentCyan font-mono text-xs">PHASE 01</span>
+                        <h4 class="text-white font-semibold text-sm mt-1 mb-2">Research & Ideation</h4>
+                        <p class="text-gray-400 text-xs">Requirement gathering, wireframing, and tech stack selection.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border-t-2 border-accentIndigo">
+                        <span class="text-accentIndigo font-mono text-xs">PHASE 02</span>
+                        <h4 class="text-white font-semibold text-sm mt-1 mb-2">UI/UX Prototyping</h4>
+                        <p class="text-gray-400 text-xs">Designing layout structures and interactive user flows.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border-t-2 border-purple-400">
+                        <span class="text-purple-400 font-mono text-xs">PHASE 03</span>
+                        <h4 class="text-white font-semibold text-sm mt-1 mb-2">Implementation</h4>
+                        <p class="text-gray-400 text-xs">Writing modular code, API integration, and version control.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border-t-2 border-emerald-400">
+                        <span class="text-emerald-400 font-mono text-xs">PHASE 04</span>
+                        <h4 class="text-white font-semibold text-sm mt-1 mb-2">Deployment</h4>
+                        <p class="text-gray-400 text-xs">Testing, performance optimization, and production release.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">09 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 10: Collaboration & Tools ==================== -->
+        <div class="slide-viewport" data-slide="10">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Workflow</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Collaboration & Development Tools</h2>
+                    <p class="text-gray-400 text-sm">Industry-standard toolsets for version control and teamwork.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                        <div class="text-3xl text-orange-400"><i class="fa-brands fa-git-alt"></i></div>
+                        <div>
+                            <h3 class="text-white font-semibold text-sm">Git & GitHub</h3>
+                            <p class="text-gray-400 text-xs mt-1">Branching strategies, pull requests, and collaborative code review workflows.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                        <div class="text-3xl text-blue-400"><i class="fa-solid fa-terminal"></i></div>
+                        <div>
+                            <h3 class="text-white font-semibold text-sm">VS Code & CLI</h3>
+                            <p class="text-gray-400 text-xs mt-1">Customized development environments with advanced linting and extension setups.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl flex items-start gap-4">
+                        <div class="text-3xl text-purple-400"><i class="fa-solid fa-layer-group"></i></div>
+                        <div>
+                            <h3 class="text-white font-semibold text-sm">Postman & APIs</h3>
+                            <p class="text-gray-400 text-xs mt-1">Endpoint testing, payload validation, and RESTful service integration.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-counter">10 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 11: Achievements & Extracurriculars ==================== -->
+        <div class="slide-viewport" data-slide="11">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Recognition</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Achievements & Extracurriculars</h2>
+                    <p class="text-gray-400 text-sm">Milestones outside the standard classroom curriculum.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="p-4 bg-yellow-500/10 text-yellow-400 rounded-xl text-2xl"><i class="fa-solid fa-trophy"></i></div>
+                        <div>
+                            <h3 class="text-white font-semibold text-base">Technical Hackathons</h3>
+                            <p class="text-gray-400 text-xs mt-1">Participated in inter-college coding challenges, building rapid prototypes within tight deadlines.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl flex items-center gap-4">
+                        <div class="p-4 bg-accentCyan/10 text-accentCyan rounded-xl text-2xl"><i class="fa-solid fa-medal"></i></div>
+                        <div>
+                            <h3 class="text-white font-semibold text-base">UI/UX Design Contests</h3>
+                            <p class="text-gray-400 text-xs mt-1">Recognized for creating clean, accessible, and user-centric web interface mockups.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-counter">11 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 12: Continuous Learning & Growth ==================== -->
+        <div class="slide-viewport" data-slide="12">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Growth</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Continuous Learning & Growth</h2>
+                    <p class="text-gray-400 text-sm">Staying ahead of technology trends through active self-education.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-accentCyan text-3xl mb-3"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3 class="text-white font-semibold text-sm mb-2">Advanced Frameworks</h3>
+                        <p class="text-gray-400 text-xs">Exploring state-of-the-art frontend tooling and backend microservices architecture.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-accentIndigo text-3xl mb-3"><i class="fa-solid fa-book-bookmark"></i></div>
+                        <h3 class="text-white font-semibold text-sm mb-2">Technical Reading</h3>
+                        <p class="text-gray-400 text-xs">Regularly reviewing engineering blogs, documentation updates, and design system guides.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-emerald-400 text-3xl mb-3"><i class="fa-solid fa-users-gear"></i></div>
+                        <h3 class="text-white font-semibold text-sm mb-2">Open Source</h3>
+                        <p class="text-gray-400 text-xs">Contributing to community repositories and experimenting with experimental libraries.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">12 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 13: Future Scope & Vision ==================== -->
+        <div class="slide-viewport" data-slide="13">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Vision</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Future Scope & Professional Goals</h2>
+                    <p class="text-gray-400 text-sm">Short-term objectives and long-term career aspirations.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-auto">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-accentCyan">
+                        <h3 class="text-white font-semibold text-base mb-2"><i class="fa-solid fa-bullseye text-accentCyan mr-2"></i>Short-Term Objectives</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Secure a challenging software engineering or frontend development role where I can contribute to high-impact products and refine my technical skills.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-accentIndigo">
+                        <h3 class="text-white font-semibold text-base mb-2"><i class="fa-solid fa-compass text-accentIndigo mr-2"></i>Long-Term Vision</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed">Evolve into a Principal Solution Architect, leading cross-functional teams to build scalable enterprise applications that touch millions of lives.</p>
+                    </div>
+                </div>
+                <div class="slide-counter">13 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 14: Conclusion ==================== -->
+        <div class="slide-viewport" data-slide="14">
+            <div class="flex flex-col h-full p-12 justify-between relative z-10">
+                <div>
+                    <span class="text-accentCyan text-xs font-semibold uppercase tracking-widest block mb-2">Summary</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3">Conclusion</h2>
+                    <p class="text-gray-400 text-sm">Bringing together dedication, technical skill, and creative design.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl my-auto text-center max-w-2xl mx-auto border border-accentCyan/20">
+                    <h3 class="text-2xl font-bold text-white mb-3">Ready to Build the Future</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">Armed with a solid academic foundation from IITM Janakpuri and a relentless drive for innovation, I am well-prepared to tackle complex engineering challenges.</p>
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-accentCyan/10 text-accentCyan rounded-full text-xs font-mono">
+                        <i class="fa-solid fa-check-circle"></i> ID: 11190302025 | Ishpreet Singh
+                    </div>
+                </div>
+                <div class="slide-counter">14 / 15</div>
+            </div>
+        </div>
+
+        <!-- ==================== SLIDE 15: Q&A / Contact ==================== -->
+        <div class="slide-viewport" data-slide="15">
+            <div class="absolute inset-0 bg-gradient-to-br from-accentCyan/10 via-transparent to-accentIndigo/10 pointer-events-none"></div>
+            <div class="flex flex-col justify-center items-center h-full px-12 text-center relative z-10">
+                <div class="w-16 h-16 rounded-2xl glass-card flex items-center justify-center text-accentCyan text-3xl mb-6 shadow-lg shadow-accentCyan/10">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Thank You!</h2>
+                <p class="text-gray-300 text-base max-w-lg mb-8">Open for questions, discussions, and exciting collaboration opportunities.</p>
+                <div class="glass-card px-8 py-4 rounded-2xl flex flex-wrap justify-center gap-8 text-sm text-gray-300">
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-user text-accentCyan"></i> Ishpreet Singh</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-university text-accentIndigo"></i> IITM Janakpuri</div>
+                    <div class="flex items-center gap-2"><i class="fa-solid fa-id-card text-emerald-400"></i> 11190302025</div>
+                </div>
+            </div>
+            <div class="slide-counter">15 / 15</div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" title="Previous Slide (Left Arrow)"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="nav-btn" id="nextBtn" title="Next Slide (Right Arrow / Space)"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+    </div>
+
+    <!-- JavaScript for Presentation Engine & Asynchronous Image Loading -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 15;
+
+        const slides = document.querySelectorAll('.slide-viewport');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateSlide(n) {
+            if (n > totalSlides) {
+                currentSlide = totalSlides;
+                return;
+            }
+            if (n < 1) {
+                currentSlide = 1;
+                return;
+            }
+            currentSlide = n;
+
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                if (parseInt(slide.getAttribute('data-slide')) === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Update progress bar
+            const progressPercentage = ((currentSlide - 1) / (totalSlides - 1)) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+
+        // Event Listeners for Navigation
+        nextBtn.addEventListener('click', () => {
+            updateSlide(currentSlide + 1);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            updateSlide(currentSlide - 1);
+        });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                updateSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                updateSlide(currentSlide - 1);
+            }
+        });
+
+        // Asynchronous Image Fetching and Simulation (Thread-like Asset Loading)
+        async function loadProjectImages() {
+            try {
+                // Fetching contextual placeholder images asynchronously from Picsum / Unsplash Source
+                const img1 = document.getElementById('projectImg1');
+                const img2 = document.getElementById('projectImg2');
+
+                // Simulate parallel asynchronous network request delay
+                await new Promise(resolve => setTimeout(resolve, 600));
+
+                if (img1) img1.src = 'https://picsum.photos/seed/dashboard/800/500';
+                if (img2) img2.src = 'https://picsum.photos/seed/ecommerce/800/500';
+            } catch (error) {
+                console.error("Error loading project preview images:", error);
+            }
+        }
+
+        // Initialize presentation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateSlide(1);
+            loadProjectImages();
+        });
+    </script>
+</body>
+</html>
