@@ -12,7 +12,7 @@ import streamlit as st
 
 #==========step: 2 streamlit Front-end
 # To show web-app: complete page layout
-st.set_page_config(layout=wide")
+st.set_page_config(layout=wide)
 
 st.title("AI PPT GENERATOR")
 st.divider()
