@@ -125,11 +125,14 @@ def run_agent(leader_agent, query):
   code = response['messages'][-1].content[-1]['text']
   return code
 
-
-leader_agent = create_agent(
+if all(ALL_API):
+  leader_agent = create_agent(
     model = model,
     tools = [search_latest_info,
-             generate_image])
+             generate_image]
+  )
+else:
+  st.info("PASS-ALL-API-KEYS and Rerun")
 
 
 tab1,tab2,tab3 = st.tabs(["Generate Iamge"
