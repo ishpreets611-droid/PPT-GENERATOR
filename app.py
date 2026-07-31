@@ -169,7 +169,7 @@ if (user_input) and (leader_agent):
           try:
             code = run_agent(leader_agent,user)
             st.html(code, width="stretch",
-                   unsafe_allow_javascript=True)
+                unsafe_allow_javascript=True)
 
             # File save
             with open("ppt.html",'w') as f:
