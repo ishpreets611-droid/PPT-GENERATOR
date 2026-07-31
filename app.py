@@ -150,10 +150,10 @@ if (user_input) and (leader_agent):
           time.sleep(4)
           st.image(url)
 
-   with tab2:
-     if st.button("Fetch News", key = "Fetch-News"):
-       with st.spinner("Running Agent"):
-         try:
+    with tab2:
+      if st.button("Fetch News", key = "Fetch-News"):
+        with st.spinner("Running Agent"):
+          try:
            prompt = "Give Multiple news in HTML card Format for topics" + user_input
            response = leader_agent.invoke({'messages':[{'role':'user',
                                              'content':prompt}]})
